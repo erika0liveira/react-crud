@@ -1,6 +1,36 @@
 import { Box, Button, Divider, Icon, Paper, useTheme } from "@mui/material";
 
-export const DetailTool: React.FC = () => {
+interface IDetailToolProps {
+  newBtnText?: string;
+  showSaveBtn?: boolean;
+  showNewBtn?: boolean;
+  showReturnBtn?: boolean;
+  showDeleteBtn?: boolean;
+  showReturnSaveBtn?: boolean;
+
+  saveOnClick?: () => void;
+  newOnClick?: () => void;
+  returnOnClick?: () => void;
+  deleteOnClick?: () => void;
+  returnSaveOnClick?: () => void;
+}
+
+export const DetailTool: React.FC<IDetailToolProps> = ({
+  newBtnText = "Novo",
+
+  showNewBtn = true,
+  showSaveBtn = true,
+  showReturnSaveBtn = false,
+  showDeleteBtn = true,
+  showReturnBtn = true,
+
+  newOnClick,
+  saveOnClick,
+  returnSaveOnClick,
+  deleteOnClick,
+  returnOnClick,
+  
+}) => {
   const theme = useTheme();
   
   return (
@@ -14,36 +44,47 @@ export const DetailTool: React.FC = () => {
       marginX={1}
       paddingX={1}
     >
-
-      <Button
+      {showNewBtn &&(<Button
         variant="contained"
         color="primary"
         disableElevation
-        startIcon={<Icon>save</Icon>}
-      >Salvar</Button>
+        startIcon={<Icon>add</Icon>}
+        onClick={newOnClick}
+      >{ newBtnText }</Button>)}
 
-      <Button
+      {showSaveBtn &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>save</Icon>}
-      >Salvar e Voltar</Button>
+        onClick={saveOnClick}
+      >Salvar</Button>)}
 
-      <Button
+      {showReturnSaveBtn &&(<Button
+        variant="outlined"
+        color="primary"
+        disableElevation
+        startIcon={<Icon>save</Icon>}
+        onClick={returnSaveOnClick}
+      >Salvar e Voltar</Button>)}
+
+      {showDeleteBtn &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>delete</Icon>}
-      >Apagar</Button>
+        onClick={deleteOnClick}
+      >Apagar</Button>)}
 
       <Divider orientation="vertical" />
 
-      <Button
+      {showReturnBtn &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>arrow_back</Icon>}
-      >Voltar</Button>
+        onClick={returnOnClick}
+      >Voltar</Button>)}
 
     </Box>
   );
