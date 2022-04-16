@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Paper, useTheme } from "@mui/material";
+import { Box, Button, Divider, Icon, Paper, useTheme, Skeleton, Typography, useMediaQuery } from "@mui/material";
 
 interface IDetailToolProps {
   newBtnText?: string;
@@ -7,6 +7,12 @@ interface IDetailToolProps {
   showReturnBtn?: boolean;
   showDeleteBtn?: boolean;
   showReturnSaveBtn?: boolean;
+
+  showNewBtnLoading?: boolean;
+  showSaveBtnLoading?: boolean;
+  showReturnSaveBtnLoading?: boolean;
+  showDeleteBtnLoading?: boolean;
+  showReturnBtnLoading?: boolean;
 
   saveOnClick?: () => void;
   newOnClick?: () => void;
@@ -24,6 +30,12 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
   showDeleteBtn = true,
   showReturnBtn = true,
 
+  showNewBtnLoading = false,
+  showSaveBtnLoading = false,
+  showReturnSaveBtnLoading = false,
+  showDeleteBtnLoading = false,
+  showReturnBtnLoading = false,
+
   newOnClick,
   saveOnClick,
   returnSaveOnClick,
@@ -32,7 +44,10 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
   
 }) => {
   const theme = useTheme();
-  
+    
+  const smDown = useMediaQuery(theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box 
       component={Paper}
@@ -44,7 +59,7 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
       marginX={1}
       paddingX={1}
     >
-      {showNewBtn &&(<Button
+      {(showNewBtn && !showNewBtnLoading && !smDown) &&(<Button
         variant="contained"
         color="primary"
         disableElevation
@@ -52,39 +67,68 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
         onClick={newOnClick}
       >{ newBtnText }</Button>)}
 
-      {showSaveBtn &&(<Button
+      {(showNewBtnLoading && !smDown) &&(<Skeleton width={109} height={58}/>)}
+
+      {(showSaveBtn && !showSaveBtnLoading) &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>save</Icon>}
         onClick={saveOnClick}
-      >Salvar</Button>)}
+      >
+        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden"> 
+          Salvar
+        </Typography>
+      </Button>)}
 
-      {showReturnSaveBtn &&(<Button
+      {showSaveBtnLoading &&(<Skeleton width={109} height={58}/>)}
+
+      {(showReturnSaveBtn && !showReturnSaveBtnLoading && !smDown && !mdDown) &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>save</Icon>}
         onClick={returnSaveOnClick}
-      >Salvar e Voltar</Button>)}
+      >
+        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden"> 
+          Salvar e Voltar
+        </Typography>
+      </Button>)}
 
-      {showDeleteBtn &&(<Button
+      {(showReturnSaveBtnLoading && !smDown && !mdDown) &&(<Skeleton width={180} height={58}/>)}
+
+      {(showDeleteBtn && !showDeleteBtnLoading) &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>delete</Icon>}
         onClick={deleteOnClick}
-      >Apagar</Button>)}
+      >
+        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden"> 
+          Apagar
+        </Typography>
+      </Button>)}
 
-      <Divider orientation="vertical" />
+      {showDeleteBtnLoading &&(<Skeleton width={109} height={58}/>)}
 
-      {showReturnBtn &&(<Button
+      {
+        (showReturnBtnLoading && (showNewBtnLoading || showSaveBtnLoading || showReturnSaveBtnLoading || showDeleteBtnLoading)
+        ) && (<Divider orientation="vertical" />)
+      }
+
+      {(showReturnBtn && !showReturnBtnLoading) &&(<Button
         variant="outlined"
         color="primary"
         disableElevation
         startIcon={<Icon>arrow_back</Icon>}
         onClick={returnOnClick}
-      >Voltar</Button>)}
+      >        
+        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden"> 
+            Voltar
+        </Typography>
+      </Button>)}
+
+      {showReturnBtnLoading &&(<Skeleton width={109} height={58}/>)}
 
     </Box>
   );
