@@ -1,3 +1,10 @@
 {
-    "fullName": []
+    "people": [
+        {
+            "id": 1,
+            "fullName": "Branca Oliveira",
+            "email": "branquinha@email.com",
+            "cityId": 1
+        }
+    ]
 }

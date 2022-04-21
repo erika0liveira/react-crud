@@ -22,7 +22,7 @@ type TPersonCount = {
 
 const getAll = async(page=1, filter=""): Promise<TPersonCount | Error> => {
   try {
-    const relativeUrl = `/pessoas?_page=${page}_limit=${Environment.ROW_LIMIT}&fullName_like=${filter}`;
+    const relativeUrl = `/people?_page=${page}&_limit=${Environment.ROW_LIMIT}&fullName_like=${filter}`;
     const { data, headers } = await Api.get(relativeUrl);
 
     if(data){
@@ -42,7 +42,7 @@ const getAll = async(page=1, filter=""): Promise<TPersonCount | Error> => {
 
 const getById = async(id:number): Promise<IPersonDetail | Error> => {
   try {
-    const { data } = await Api.get(`/pessoas/${id}`);
+    const { data } = await Api.get(`/people/${id}`);
 
     if(data){
       return data;
@@ -58,7 +58,7 @@ const getById = async(id:number): Promise<IPersonDetail | Error> => {
 
 const create = async(personData: Omit<IPersonDetail, "id">): Promise<number | Error> => {
   try {
-    const { data } = await Api.post<IPersonDetail>("/pessoas", personData);
+    const { data } = await Api.post<IPersonDetail>("/people", personData);
 
     if(data){
       return data.id;
@@ -74,7 +74,7 @@ const create = async(personData: Omit<IPersonDetail, "id">): Promise<number | Er
 
 const updateById = async(id: number, personData: IPersonDetail): Promise<void | Error> => {
   try {
-    await Api.put(`/pessoas/${id}`, personData);
+    await Api.put(`/people/${id}`, personData);
   } catch (error) {
     console.error(error);
     return new Error((error as {message: string}).message || "Erro ao atualizar o registro");
@@ -83,7 +83,7 @@ const updateById = async(id: number, personData: IPersonDetail): Promise<void | 
 
 const deleteById = async(id: number): Promise<void | Error> => {
   try {
-    await Api.delete(`/pessoas/${id}`);
+    await Api.delete(`/people/${id}`);
   } catch (error) {
     console.error(error);
     return new Error((error as {message: string}).message || "Erro ao deletar o registro");
