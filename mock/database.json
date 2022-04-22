@@ -5,6 +5,42 @@
             "fullName": "Branca Oliveira",
             "email": "branquinha@email.com",
             "cityId": 1
+        },
+        {
+            "id": 2,
+            "fullName": "Bebe Oliveira",
+            "email": "bb@email.com",
+            "cityId": 1
+        },
+        {
+            "id": 3,
+            "fullName": "Menina Oliveira",
+            "email": "menina@email.com",
+            "cityId": 1
+        },
+        {
+            "id": 4,
+            "fullName": "Menino Oliveira",
+            "email": "menino@email.com",
+            "cityId": 1
+        },
+        {
+            "id": 5,
+            "fullName": "Torta Oliveira",
+            "email": "tortinha@email.com",
+            "cityId": 1
+        },
+        {
+            "id": 6,
+            "fullName": "Filhotinha Oliveira",
+            "email": "pulga1@email.com",
+            "cityId": 1
+        },
+        {
+            "id": 7,
+            "fullName": "Filhotinho Oliveira",
+            "email": "pulga2@email.com",
+            "cityId": 1
         }
     ]
 }

@@ -17,7 +17,7 @@ export const LayoutBase: React.FC<ILayoutBaseProps> = ({ children, title, toolBa
 
   return (
     <>
-      <Box height="100%" display="flex" flexDirection="column" gap={1}>
+      <Box height="100%" display="flex" flexDirection="column" gap={1} marginX={2}>
         <Box display="flex" alignItems="center" padding={1} height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12)} gap={1}>
 
           {smDown && (
