@@ -1,8 +1,10 @@
 import { LinearProgress } from "@mui/material";
+import { Form } from "@unform/web";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { DetailTool } from "../../shared/components";
+import { VTextField } from "../../shared/forms";
 import { LayoutBase } from "../../shared/layouts";
 import { PeopleServices } from "../../shared/services/api/people/PeopleServices";
 
@@ -65,11 +67,19 @@ export const PersonDetail: React.FC = () => {
       }
     >
 
+      <Form onSubmit={console.log}>
+
+        <VTextField
+          name="fullName"
+        />
+      
+      </Form>
+
       {isLoading && (
         <LinearProgress variant="indeterminate"/>
       )}
 
-      <p>Detalhes {id}</p>
+      <p>Detalhes id: {id}</p>
     </LayoutBase>
   );
 };
