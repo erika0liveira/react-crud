@@ -69,6 +69,7 @@ export const PeopleListing: React.FC = () => {
           showSearchInput
           searchText={search}
           btnText="Nova"
+          newOnClick={() => navigate("/people/detail/new")}
           changeSearchText={text => setSearchParams({ search: text, page: "1" }, { replace: true })}
         />
       }

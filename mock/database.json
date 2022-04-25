@@ -1,18 +1,6 @@
 {
   "people": [
     {
-      "id": 3,
-      "fullName": "Menina Oliveira",
-      "email": "menina@email.com",
-      "cityId": 1
-    },
-    {
-      "id": 4,
-      "fullName": "Menino Oliveira",
-      "email": "menino@email.com",
-      "cityId": 1
-    },
-    {
       "id": 5,
       "fullName": "Torta Oliveira",
       "email": "tortinha@email.com",

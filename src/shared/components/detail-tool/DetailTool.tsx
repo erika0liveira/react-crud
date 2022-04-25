@@ -2,21 +2,22 @@ import { Box, Button, Divider, Icon, Paper, useTheme, Skeleton, Typography, useM
 
 interface IDetailToolProps {
   newBtnText?: string;
-  showSaveBtn?: boolean;
+
   showNewBtn?: boolean;
   showReturnBtn?: boolean;
   showDeleteBtn?: boolean;
+  showSaveBtn?: boolean;
   showReturnSaveBtn?: boolean;
 
   showNewBtnLoading?: boolean;
-  showSaveBtnLoading?: boolean;
-  showReturnSaveBtnLoading?: boolean;
-  showDeleteBtnLoading?: boolean;
   showReturnBtnLoading?: boolean;
+  showSaveBtnLoading?: boolean;
+  showDeleteBtnLoading?: boolean;
+  showReturnSaveBtnLoading?: boolean;
 
-  saveOnClick?: () => void;
   newOnClick?: () => void;
   returnOnClick?: () => void;
+  saveOnClick?: () => void;
   deleteOnClick?: () => void;
   returnSaveOnClick?: () => void;
 }
@@ -25,22 +26,22 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
   newBtnText = "Novo",
 
   showNewBtn = true,
+  showReturnBtn = true,
+  showDeleteBtn = true,
   showSaveBtn = true,
   showReturnSaveBtn = false,
-  showDeleteBtn = true,
-  showReturnBtn = true,
 
   showNewBtnLoading = false,
+  showReturnBtnLoading = false,
+  showDeleteBtnLoading = false,
   showSaveBtnLoading = false,
   showReturnSaveBtnLoading = false,
-  showDeleteBtnLoading = false,
-  showReturnBtnLoading = false,
 
   newOnClick,
+  returnOnClick,
+  deleteOnClick,
   saveOnClick,
   returnSaveOnClick,
-  deleteOnClick,
-  returnOnClick,
   
 }) => {
   const theme = useTheme();
@@ -95,7 +96,7 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
         </Typography>
       </Button>)}
 
-      {(showReturnSaveBtnLoading && !smDown && !mdDown) &&(<Skeleton width={180} height={58}/>)}
+      {(showReturnSaveBtnLoading && !smDown && !mdDown) && (<Skeleton width={180} height={58}/>)}
 
       {(showDeleteBtn && !showDeleteBtnLoading) &&(<Button
         variant="outlined"
@@ -109,10 +110,10 @@ export const DetailTool: React.FC<IDetailToolProps> = ({
         </Typography>
       </Button>)}
 
-      {showDeleteBtnLoading &&(<Skeleton width={109} height={58}/>)}
+      {showDeleteBtnLoading && (<Skeleton width={109} height={58}/>)}
 
       {
-        (showReturnBtnLoading && (showNewBtnLoading || showSaveBtnLoading || showReturnSaveBtnLoading || showDeleteBtnLoading)
+        (showReturnBtn && (showNewBtn || showSaveBtn || showReturnSaveBtn || showDeleteBtn)
         ) && (<Divider orientation="vertical" />)
       }
 
